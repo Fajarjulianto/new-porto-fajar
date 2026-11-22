@@ -1,17 +1,100 @@
 ---
+import '../styles/global.css';
+import Icon from '../components/PortfolioIcon.astro';
+import ProjectCard from '../components/ProjectCard.astro';
 
+const navigation = ['Home', 'About', 'Projects', 'Contact'];
+const socials = [
+  { name: 'linkedin' as const, url: 'https://www.linkedin.com/in/fajarjulianto24/' },
+  { name: 'github' as const, url: 'https://github.com/Fajarjulianto' },
+];
+const skills = [
+  { file: 'html-css', label: 'HTML and CSS' },
+  { file: 'js-tailwind', label: 'TypeScript and Tailwind CSS' },
+  { file: 'react-next', label: 'React and Next.js' },
+  { file: 'supabase-mysql', label: 'Supabase and MySQL' },
+];
+const projects = [
+  { image: 'fajarmotor.png', name: 'Fajar Motor', description: 'Simple Landing Page', technology: 'Next JS', repository: 'https://github.com/Fajarjulianto/fajar-motor', demo: 'https://fajarmotor.com/', width: 1364, height: 654 },
+  { image: 'satudata.png', name: 'Satu Data Tubaba', description: 'Website Satu Data Tulang Bawang Barat', technology: 'React', repository: '', demo: 'https://data.tubaba.go.id/', width: 1261, height: 599 },
+  { image: 'otokas.png', name: 'Otokas', description: 'Manajemen Dealer Motor', technologies: ['React Native', 'Nest JS'], demo: 'https://play.google.com/store/apps/details?id=com.civika.otokas', width: 2866, height: 1398 },
+  { image: 'siaga-jkn.png', name: 'Siaga JKN', description: 'Sistem Monitoring JKN', technologies: ['React', 'Fastify'], demo: 'https://siaga-jkn.tubaba.go.id/', width: 2876, height: 1386 },
+];
 ---
-
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<!doctype html>
+<html lang="en" class="scroll-smooth motion-reduce:scroll-auto">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Fajar Julianto — Full Stack Developer based in Tubaba, Lampung. Explore my React, Next.js, and Tailwind CSS projects." />
+    <meta name="theme-color" content="#f9f9f9" />
+    <meta property="og:title" content="Fajar Julianto | Full Stack Developer" />
+    <meta property="og:description" content="Full Stack developer based in Tubaba, Lampung. Discover my projects and get in touch." />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="/portfolio-icon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <title>Fajar Julianto | Full Stack Developer</title>
+  </head>
+  <body class="relative bg-white font-poppins leading-normal text-ink [&_section]:scroll-mt-22.5 **:focus-visible:outline-3 **:focus-visible:outline-offset-6 **:focus-visible:outline-[#c4510a]">
+    <a class="fixed top-2.5 left-2.5 z-400 translate-y-[-200%] bg-ink px-5 py-3 text-base text-white focus:translate-y-0" href="#main">Skip to content</a>
+    <header>
+      <nav class="fixed inset-x-0 top-0 z-200 flex items-center justify-between bg-white py-6.25 pr-10 pl-12.5 text-[17px] shadow-[0_0_10px_rgba(0,0,0,0.09)] max-[400px]:px-7.5" aria-label="Main navigation">
+        <a href="#home" class="text-[19.89px] font-bold text-ink">Fajar.dev</a>
+        <ul class="flex list-none gap-5 font-semibold [&_a]:transition-colors [&_a:hover]:text-brand max-[901px]:[&_a]:hidden">
+          {navigation.map((name) => <li><a href={`#${name.toLowerCase()}`}>{name}</a></li>)}
+          <li><button id="menu-toggle" class="hidden cursor-pointer p-1 hover:text-brand max-[901px]:flex" type="button" aria-label="Open navigation" aria-controls="mobile-navigation" aria-expanded="false" hidden><Icon name="menu" size={30} /></button></li>
+        </ul>
+      </nav>
+      <dialog class="fixed inset-0 m-0 h-dvh max-h-none w-full max-w-none items-center justify-center border-0 bg-white p-10 text-center backdrop:bg-white open:flex" id="mobile-navigation" aria-label="Mobile navigation">
+        <button id="menu-close" class="absolute top-5 right-10 cursor-pointer p-2 hover:text-brand" type="button" aria-label="Close navigation"><Icon name="close" size={30} /></button>
+        <ul class="flex flex-col gap-10 text-[23px] font-medium [&_a:hover]:text-brand">{navigation.map((name) => <li><a href={`#${name.toLowerCase()}`}>{name}</a></li>)}</ul>
+      </dialog>
+    </header>
+    <main id="main">
+      <section id="home" class="relative flex min-h-185 h-screen w-full flex-col bg-surface max-[901px]:h-auto max-[901px]:min-h-0 max-[901px]:py-27.5" aria-labelledby="hero-title">
+        <div class="mx-auto w-full max-w-267.5 px-10 max-[460px]:px-4.25"><div class="relative flex h-162.5 items-center justify-center gap-25 max-[901px]:h-auto max-[901px]:flex-col max-[901px]:gap-7.5 max-[901px]:text-center min-[1600px]:mt-15 min-[1900px]:mt-25">
+          <div class="relative flex items-center justify-center gap-25 max-[901px]:flex-col-reverse max-[901px]:gap-7.5 max-[901px]:text-center">
+            <div class="relative flex max-w-125 flex-col">
+              <h1 id="hero-title" class="my-5 text-[55px] leading-[1.2] font-bold max-[500px]:text-[40px]">Fajar Julianto</h1>
+              <h2 class="text-[30px] font-bold max-[600px]:text-[26px]">Full Stack Developer</h2>
+              <p class="font-mulish text-[18px] leading-[1.6] font-medium text-[#555] max-[901px]:mb-12.5">Hi everyone <span class="inline-block origin-[70%_70%] motion-safe:animate-wave">👋🏼</span>, welcome to my portfolio website.</p>
+              <span class="my-6.25 flex gap-3.25 [&_a]:transition-colors [&_a:hover]:text-brand max-[901px]:-mt-5 max-[901px]:mb-10 max-[901px]:justify-center max-[901px]:gap-4">{socials.map(({ name, url }) => <a aria-label={name} href={url} target="_blank" rel="noopener noreferrer"><Icon name={name} /></a>)}</span>
+            </div>
+            <img class="relative size-87.5 shrink-0 rounded-[60%_40%_30%_70%/60%_30%_70%_40%] border-[3px] border-ink object-cover motion-safe:animate-morph max-[600px]:size-[min(280px,85vw)]" src="/assets/Fajar.png" alt="Fajar Julianto" width="2448" height="3264" fetchpriority="high" />
+          </div>
+          <div class="absolute bottom-0 left-0 flex items-center text-[17px] max-[901px]:static max-[901px]:mx-auto max-[901px]:flex-col"><p class="mr-17.5 border-r-2 border-ink/50 pr-5 font-mulish font-semibold max-[901px]:mr-0 max-[901px]:mb-7.5 max-[901px]:border-r-0 max-[901px]:border-b-2 max-[901px]:pr-0 max-[901px]:pb-2.5">Tech Stack</p><div class="[&_ul]:flex [&_ul]:flex-wrap [&_ul]:gap-7.5 max-[901px]:[&_ul]:justify-center [&_img]:h-12.5 [&_img]:w-27.5 [&_img]:transition-transform motion-safe:[&_img:hover]:-translate-y-2.5"><ul>{skills.map(({ file, label }) => <li><img src={`/assets/skills/${file}.svg`} alt={label} width="110" height="50" /></li>)}</ul></div></div>
+        </div></div>
+      </section>
+      <section class="bg-white py-37.5 max-[1020px]:py-20" id="about" aria-labelledby="about-title">
+        <div class="mx-auto w-full max-w-267.5 px-10 max-[460px]:px-4.25"><div class="grid items-center justify-center text-center"><div class="pr-3.75 max-[1020px]:mx-auto max-[1020px]:max-w-135 max-[400px]:pr-0">
+          <h2 id="about-title" class="mb-2.5 text-[18px] font-bold uppercase text-brand">About me</h2>
+          <h3 class="mb-5 text-[25px] leading-[1.4] font-bold text-ink">Full Stack Developer <br /> based in Tubaba, Lampung</h3>
+          <p class="font-mulish text-[17px] leading-normal font-medium text-muted">Hello, my name is Fajar Julianto, I'm a Full Stack Developer.<br />I have an interest in a career as a Full Stack Developer.<br />My main stack currently is Next.js and TypeScript.</p>
+        </div></div></div>
+      </section>
+      <section id="projects" class="flex items-center justify-center bg-surface py-37.5 max-[1020px]:py-20" aria-labelledby="projects-title">
+        <div class="mx-auto w-full max-w-267.5 px-10 max-[460px]:px-4.25">
+          <h2 id="projects-title" class="text-[18px] font-bold uppercase text-brand">My Projects</h2>
+          <div class="grid grid-cols-2 items-stretch justify-center gap-5 text-center max-[600px]:grid-cols-1">{projects.map((project) => <ProjectCard {...project} />)}</div>
+          <p class="mt-25 text-center text-[26px] font-bold text-ink">New projects coming soon..</p>
+        </div>
+      </section>
+      <section id="contact" class="bg-white py-27.5 max-[1020px]:py-20" aria-labelledby="contact-title">
+        <div class="mx-auto w-full max-w-267.5 px-10 max-[460px]:px-4.25"><div class="flex flex-col">
+          <div class="max-[750px]:text-center"><h2 id="contact-title" class="mb-2.5 text-[18px] font-bold uppercase text-brand">contact</h2><h3 class="text-[25px] font-bold uppercase">Don't be shy! Hit me up! 👇</h3></div>
+          <div class="mt-15 flex flex-wrap gap-20 max-[750px]:flex-col max-[750px]:justify-center max-[750px]:gap-12.5 max-[750px]:text-center">
+            <div class="flex items-center gap-3.75 max-[750px]:flex-col"><span class="flex size-12.5 shrink-0 items-center justify-center rounded-full bg-white text-brand shadow-[0_0_10px_rgba(0,0,0,0.1)]"><Icon name="map" size={30} /></span><div class="flex min-w-0 flex-col gap-1.25 [&_h3]:text-[17px] [&_h3]:font-bold [&_h3]:uppercase [&_a]:text-[17px] [&_a]:text-muted [&_a]:wrap-anywhere [&_a:hover]:text-brand"><h3>Location</h3><a href="https://maps.app.goo.gl/67B3jeX3qJvVj19W9" target="_blank" rel="noopener noreferrer">Tulang Bawang Barat, Lampung</a></div></div>
+            <div class="flex items-center gap-3.75 max-[750px]:flex-col"><span class="flex size-12.5 shrink-0 items-center justify-center rounded-full bg-white text-brand shadow-[0_0_10px_rgba(0,0,0,0.1)]"><Icon name="mail" size={30} /></span><div class="flex min-w-0 flex-col gap-1.25 [&_h3]:text-[17px] [&_h3]:font-bold [&_h3]:uppercase [&_a]:text-[17px] [&_a]:text-muted [&_a]:wrap-anywhere [&_a:hover]:text-brand"><h3>Mail</h3><a href="mailto:fajarjulileo@gmail.com">fajarjulileo@gmail.com</a></div></div>
+          </div>
+        </div></div>
+      </section>
+    </main>
+    <footer class="w-full bg-ink py-12.5"><div class="mx-auto w-full max-w-267.5 px-10 max-[460px]:px-4.25"><div class="flex items-center justify-between max-[550px]:flex-wrap max-[550px]:justify-center max-[550px]:gap-5 max-[550px]:text-center">
+      <p class="text-[17px] font-bold uppercase text-white">Copyright © {new Date().getFullYear()}. All rights are reserved</p>
+      <div class="mt-2.5 flex items-center justify-center gap-5 text-white [&_a]:transition-transform motion-safe:[&_a:hover]:scale-120">{socials.map(({ name, url }) => <a aria-label={name} href={url} target="_blank" rel="noopener noreferrer"><Icon name={name} /></a>)}</div>
+    </div></div></footer>
+    <script>import '../scripts/portfolio';</script>
+  </body>
 </html>
